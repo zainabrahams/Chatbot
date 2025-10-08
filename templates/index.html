@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaty Project</title>
+<style>
+body { font-family: system-ui, Arial, sans-serif; margin: 20px; }
+#chat { height: 300px; overflow: auto; border: 1px solid #ddd; border-radius: 8px; padding: 10px; margin: 10px 0; }
+.msg { margin: 6px 0; }
+.user { font-weight: 700; }
+.ai { color: #444; }
+input { width: 80%; padding: 8px; }
+button { padding: 8px 12px; }
+</style>
+</head>
+<body>
+<h1>Chat</h1>
+
+<div id="chat">
+    {% if bot_response %}
+        <div class="msg user"><strong>You:</strong> {{ user_input }}</div>
+        <div class="msg ai"><strong>AI:</strong> {{ bot_response }}</div>
+    {% endif %}
+</div>
+
+<form method="POST" autocomplete="off">
+    <input name="user_input" id="input" placeholder="Type a message..." required />
+    <button type="submit">Send</button>
+</form>
+
+<script>
+const chat = document.getElementById('chat');
+const input = document.getElementById('input');
+
+// Scroll to bottom on page load if messages exist
+chat.scrollTop = chat.scrollHeight;
+
+// Optional: autofocus input box
+input.focus();
+</script>
+</body>
+</html>
